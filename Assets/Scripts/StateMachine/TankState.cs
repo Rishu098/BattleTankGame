@@ -9,8 +9,6 @@ public class TankState : MonoBehaviour
 {
     protected EnemyView enemyView;
     protected EnemyModel enemyModel;
-
-
     protected virtual void Awake()
     {
         enemyView = GetComponent<EnemyView>();
