@@ -10,35 +10,26 @@ public class TankPatrollingState : TankState
     [HideInInspector]
     public Vector3 playerTankPosition;
     private float step = 3;
-    [HideInInspector]
-    public bool patrollingTrigger;
     public override void OnEnterState()
     {
         base.OnEnterState();
         tankNextPosition = SetNextPosition();
         Debug.Log("TP" + tankNextPosition);
-        step = step * Time.deltaTime;
-        patrollingTrigger = false;
+        Debug.Log("Enter into patrolling state");
 
     }
     public override void OnExitState()
     {
-        Debug.Log("Exit from patrolling state");
-        patrollingTrigger = false;
-
         base.OnExitState();
+        Debug.Log("Exit from patrolling state");
     }
-    // protected override void Awake()
-    // {
-    //     base.Awake();
-    // }
 
     public void Update()
     {
         if (this.transform.position != tankNextPosition)
         {
             this.transform.LookAt(tankNextPosition);
-            this.transform.position = Vector3.MoveTowards(this.transform.position, tankNextPosition, step);
+            this.transform.position = Vector3.MoveTowards(this.transform.position, tankNextPosition, step*Time.deltaTime);
         }
         else
         {

@@ -2,22 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyView : MonoBehaviour
+public class EnemyView : MonoBehaviour,IDamagable
 {
     private TankState currentState;
+    private EnemyController enemyController;
     [SerializeField]
     public TankPatrollingState tankPatrollingState;
     [SerializeField]
-    public TankChasingState tankChasingState;
-    [SerializeField]
-    public TankAttackingState tankAttackingState;
+   public TankChasingState tankChasingState;
+   [SerializeField]
+   public TankAttackingState tankAttackingState;
 
-    [SerializeField]
+   [SerializeField]
     public TankState startingState;
+     public void TakeDamage(float damage){
+        enemyController.ApplyDamage(damage);
+        }
 
     private void Start()
     {
-        ChangeState(startingState);
+        ChangeState(tankPatrollingState);
     }
 
     public void ChangeState(TankState newState)

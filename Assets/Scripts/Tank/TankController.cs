@@ -24,8 +24,6 @@ namespace Tanks.Tank
         public TankModel TankModel { get; }
         public TankView TankView { get; }
 
-        // Update is called every frame, if the MonoBehaviour is enabled.
-
         public void GetBullet()
         {
             Debug.Log("GetBullet");

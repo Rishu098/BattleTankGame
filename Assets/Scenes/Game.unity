@@ -677,7 +677,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400112, guid: 002e2a607f5b64c48be0b3b0d8b8bfdd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.91
+      value: -14.44
       objectReference: {fileID: 0}
     - target: {fileID: 400112, guid: 002e2a607f5b64c48be0b3b0d8b8bfdd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -965,6 +965,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tankPatrollingState: {fileID: 2042524724}
   tankChasingState: {fileID: 2042524723}
+  tankAttackingState: {fileID: 2042524728}
   startingState: {fileID: 2042524724}
 --- !u!114 &2042524723
 MonoBehaviour:
@@ -973,7 +974,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2042524720}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 52cc2b076b5776844aa64f57c7fcacff, type: 3}
   m_Name: 
@@ -985,11 +986,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2042524720}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e28e1ddc7af9b4f479f8f772af98b914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerTankPosition: {x: 0, y: 0, z: 0}
+  patrollingTrigger: 0
 --- !u!135 &2042524725
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1032,6 +1035,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2042524728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2042524720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a193b4b8d45cb345aca1a185d41c6ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2113032108
 GameObject:
   m_ObjectHideFlags: 0
