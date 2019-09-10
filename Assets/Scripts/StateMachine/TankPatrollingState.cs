@@ -10,6 +10,12 @@ public class TankPatrollingState : TankState
     [HideInInspector]
     public Vector3 playerTankPosition;
     private float step = 3;
+    [HideInInspector]
+    public bool isPatrolling;
+    protected override void Awake()
+    {
+    base.Awake();
+    }
     public override void OnEnterState()
     {
         base.OnEnterState();
@@ -38,12 +44,12 @@ public class TankPatrollingState : TankState
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.GetComponent<TankView>() == true)
+        if (other.gameObject.GetComponent<TankView>() != null)
         {
             Debug.Log("Tank Detected");
             playerTankPosition = other.transform.position;
-            Debug.Log("PlayerPos = " + playerTankPosition);
             enemyView.ChangeState(enemyView.tankChasingState);
+            isPatrolling = true;
         }
     }
     private Vector3 SetNextPosition()

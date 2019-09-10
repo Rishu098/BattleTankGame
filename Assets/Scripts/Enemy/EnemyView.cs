@@ -12,16 +12,18 @@ public class EnemyView : MonoBehaviour,IDamagable
    public TankChasingState tankChasingState;
    [SerializeField]
    public TankAttackingState tankAttackingState;
-
-   [SerializeField]
+    [SerializeField]
     public TankState startingState;
-     public void TakeDamage(float damage){
+
+    public void TakeDamage(float damage)
+    {
         enemyController.ApplyDamage(damage);
-        }
+    }
 
     private void Start()
     {
-        ChangeState(tankPatrollingState);
+        currentState = startingState;
+        ChangeState(currentState);
     }
 
     public void ChangeState(TankState newState)
@@ -29,9 +31,11 @@ public class EnemyView : MonoBehaviour,IDamagable
         if (currentState != null)
         {
             currentState.OnExitState();
+            
         }
-        currentState = newState;
-        currentState.OnEnterState();
+            currentState = newState;
+            currentState.OnEnterState();
+        
     }
 
 }
