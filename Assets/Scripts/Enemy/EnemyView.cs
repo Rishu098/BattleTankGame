@@ -13,7 +13,7 @@ public class EnemyView : MonoBehaviour,IDamagable
    [SerializeField]
    public TankAttackingState tankAttackingState;
     [SerializeField]
-    public TankState startingState;
+   public TankState startingState;
 
     public void TakeDamage(float damage)
     {

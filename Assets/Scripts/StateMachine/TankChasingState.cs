@@ -8,31 +8,26 @@ public class TankChasingState : TankState
     private TankPatrollingState tankPatrollingState;
     private Vector3 playerTankPosition;
     private float step = 3f;
-    private bool flick;
-    protected override void Awake()
-    {
-    base.Awake();
-    }
+    private EnemyView parentEnemyObject;
     public override void OnEnterState()
     {
         base.OnEnterState();
-        tankPatrollingState = GetComponent<TankPatrollingState>();
+        parentEnemyObject = GetComponentInParent<EnemyView>();
+        tankPatrollingState = parentEnemyObject.GetComponentInChildren<TankPatrollingState>();
         playerTankPosition = tankPatrollingState.playerTankPosition;
+        Debug.Log("ptp" + playerTankPosition);
         Debug.Log("Enter into chasing state");
-        flick = tankPatrollingState.isPatrolling;
     }
     public override void OnExitState()
     {
         base.OnExitState();
         Debug.Log("Exit from Chasing state");
-        
     }
 
     void Update()
     {
-        this.transform.LookAt(playerTankPosition);
-        this.transform.position = Vector3.MoveTowards(this.transform.position, playerTankPosition, step*Time.deltaTime);
-       
+        transform.parent.LookAt(playerTankPosition);
+        transform.parent.position = Vector3.MoveTowards(this.transform.position, playerTankPosition, step * Time.deltaTime);
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -40,11 +35,13 @@ public class TankChasingState : TankState
         {
             Debug.Log("Attacking state trigger enter");
             playerTankPosition = other.transform.position;
-            enemyView.ChangeState(enemyView.tankAttackingState);
+            parentEnemyObject.ChangeState(parentEnemyObject.tankAttackingState);
         }
     }
-    // private void OnTriggerExit(Collider other)
-    // {
-    //     enemyView.ChangeState(enemyView.tankPatrollingState);
-    // }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.GetComponent<TankView>() != null){
+            parentEnemyObject.ChangeState(parentEnemyObject.tankChasingState);
+        }
+    }
 }

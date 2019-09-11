@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class TankAttackingState : TankState
 {
-    protected override void Awake()
-    {
-    base.Awake();
-    }
+
     public override void OnEnterState()
     {
         base.OnEnterState();

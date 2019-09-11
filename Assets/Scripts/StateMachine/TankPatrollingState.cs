@@ -12,16 +12,15 @@ public class TankPatrollingState : TankState
     private float step = 3;
     [HideInInspector]
     public bool isPatrolling;
-    protected override void Awake()
-    {
-    base.Awake();
-    }
+    private EnemyView parentEnemyObject;
+
     public override void OnEnterState()
     {
         base.OnEnterState();
         tankNextPosition = SetNextPosition();
         Debug.Log("TP" + tankNextPosition);
         Debug.Log("Enter into patrolling state");
+        parentEnemyObject = GetComponentInParent<EnemyView>();
 
     }
     public override void OnExitState()
@@ -34,8 +33,8 @@ public class TankPatrollingState : TankState
     {
         if (this.transform.position != tankNextPosition)
         {
-            this.transform.LookAt(tankNextPosition);
-            this.transform.position = Vector3.MoveTowards(this.transform.position, tankNextPosition, step*Time.deltaTime);
+            transform.parent.LookAt(tankNextPosition);
+            transform.parent.position = Vector3.MoveTowards(this.transform.position, tankNextPosition, step * Time.deltaTime);
         }
         else
         {
@@ -48,12 +47,20 @@ public class TankPatrollingState : TankState
         {
             Debug.Log("Tank Detected");
             playerTankPosition = other.transform.position;
-            enemyView.ChangeState(enemyView.tankChasingState);
-            isPatrolling = true;
+            // enemyView.ChangeState(enemyView.tankChasingState);
+            parentEnemyObject.ChangeState(parentEnemyObject.tankChasingState);
+
         }
     }
     private Vector3 SetNextPosition()
     {
         return new Vector3(Random.Range(10, -10), 0, Random.Range(10, -10));
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.GetComponent<TankView>() != null){
+            parentEnemyObject.ChangeState(parentEnemyObject.tankPatrollingState);
+        }
+        
     }
 }
