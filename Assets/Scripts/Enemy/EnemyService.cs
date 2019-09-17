@@ -4,23 +4,26 @@ using UnityEngine;
 
 public class EnemyService : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public EnemyView EnemyTank;
+    public EnemyView enemyPrefab;
+    private ServicePoolEnemyTank servicePoolEnemyTank;
     void Start()
     {
-        
+        servicePoolEnemyTank = GetComponent<ServicePoolEnemyTank>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         SpawnEnemyTank();
     }
-    public void SpawnEnemyTank(){
-        if(Input.GetKeyDown(KeyCode.Alpha0)){
-            EnemyModel enemyModel = new EnemyModel(5,100f);
-            EnemyController enemyTank = new EnemyController(enemyModel,EnemyTank);
-            
+    public EnemyController SpawnEnemyTank()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            EnemyModel enemyModel = new EnemyModel(5, 100f);
+            // EnemyController enemyTank = new EnemyController(enemyModel,EnemyTank);
+            EnemyController enemy = servicePoolEnemyTank.GetEnemyTank(enemyModel, enemyPrefab);
+            return enemy;
         }
-}
+        return null;
+    }
 }

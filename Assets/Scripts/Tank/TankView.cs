@@ -6,14 +6,12 @@ namespace Tanks.Tank
 
     public class TankView : MonoBehaviour,IDamagable
     {
-        // Start is called before the first frame update
-
         public TankType tankType;
         private TankController tankController;
 
         void Start()
         {
-            
+           
         }
         public void TakeDamage(float damage){
         tankController.ApplyDamage(damage);
@@ -56,8 +54,12 @@ namespace Tanks.Tank
                 transform.Translate(-10 * Time.deltaTime, 0, 0);
             }
         }
-
-
-
+         internal void Disable()
+         {
+             gameObject.SetActive(false);
+         }
+         internal void Enable(){
+             gameObject.SetActive(true);
+         }
     }
 }

@@ -5,20 +5,14 @@ using Tanks.Tank;
 public class BulletView : MonoBehaviour
 
 {
-   
-
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
-       transform.Translate(10*Time.deltaTime,0,0);
+        transform.Translate(10 * Time.deltaTime, 0, 0);
     }
-
-    
+    internal void Disable(){
+        gameObject.SetActive(false);
+    }
+    internal void Enable(){
+        gameObject.SetActive(true);
+    }
 }

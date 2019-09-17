@@ -18,7 +18,7 @@ namespace Tanks.Tank
             ZPos = Random.Range(40, -40);
             TankModel = tankModel;
             TankView = GameObject.Instantiate<TankView>(tankPrefab, new Vector3(XPos, 0f, ZPos), Quaternion.identity);
-            // currentPosition =  this.TankView.transform.position;
+
             TankView.Init(this);
         }
         public TankModel TankModel { get; }
@@ -40,6 +40,14 @@ namespace Tanks.Tank
             {
                 TankModel.Health -= damage;
             }
+        }
+        public void Disable()
+        {
+            TankView.Disable();
+        }
+        public void Enable()
+        {
+            TankView.Enable();
         }
     }
 }

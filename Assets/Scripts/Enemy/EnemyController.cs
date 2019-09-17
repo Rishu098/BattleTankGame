@@ -18,5 +18,11 @@ public class EnemyController
     public EnemyModel EnemyModel { get; }
     public EnemyView EnemyView { get; }
     public void ApplyDamage(float damage){}
+    public void Disable(){
+        EnemyView.Disable();
+    }
+    public void Enable(){
+        EnemyView.Enable();
+    }
 
 }
