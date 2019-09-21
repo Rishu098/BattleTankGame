@@ -28,6 +28,7 @@ namespace Tanks.Tank
         {
             Debug.Log("GetBullet");
             bulletController = BulletService.Instance.SpawnBullet(this.TankView.transform.position, this.TankView.transform.rotation);
+            
         }
 
         public void ApplyDamage(float damage)

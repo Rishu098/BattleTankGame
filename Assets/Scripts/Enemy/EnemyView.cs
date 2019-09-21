@@ -12,6 +12,7 @@ public class EnemyView : MonoBehaviour, IDamagable
     public TankChasingState tankChasingState;
     [SerializeField]
     public TankAttackingState tankAttackingState;
+
     [SerializeField]
     public TankState startingState;
 
@@ -37,6 +38,7 @@ public class EnemyView : MonoBehaviour, IDamagable
         currentState.OnEnterState();
 
     }
+    
     internal void Disable()
     {
         gameObject.SetActive(false);

@@ -12,25 +12,22 @@ namespace Tanks.Tank
         void Start()
         {
             servicePoolTank = GetComponent<ServicePoolTank>();
+            TankController tankController = CreateTank(0);
         }
 
         void Update()
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                for (int i = 0; i < 3; i++)
-                {
-                    TankController tankController = CreateTank(i);
-                }
-
+                TankController tankController = CreateTank(0);
             }
         }
 
         public TankController CreateTank(int index)
         {
             TankModel model = new TankModel(tankList.tanks[index]);
-            //TankController tank = new TankController(model, tankView);
-            TankController tank = servicePoolTank.GetTank(model, tankView);
+            TankController tank = new TankController(model, tankView);
+            //TankController tank = servicePoolTank.GetTank(model, tankView);
             return tank;
 
         }

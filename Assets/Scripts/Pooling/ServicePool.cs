@@ -34,6 +34,7 @@ where T : class
     {
         PooledItems<T> pooledItem = pooledItems.Find(i => i.Item.Equals(item));
         pooledItem.IsUsed = false;
+        Debug.Log("Return item");
     }
     protected virtual T CreateItem()
     {

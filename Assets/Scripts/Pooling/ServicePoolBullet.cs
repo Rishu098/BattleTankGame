@@ -13,10 +13,14 @@ public BulletController GetBulletPool(BulletModel bulletModel,BulletView bulletP
     this.bulletPrefab = bulletPrefab;
     this.position = position;
     this.rotation = rotation;
+    Debug.Log("Bullet Pool");
     return GetItem();
+    
 }
 protected override BulletController CreateItem(){
     BulletController bulletController = new BulletController(bulletModel,bulletPrefab,position,rotation);
+    bulletController.Enable();
     return bulletController;
 }
+
 }

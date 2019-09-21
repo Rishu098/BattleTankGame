@@ -4,14 +4,12 @@ using UnityEngine;
 namespace Tanks.Tank
 {
 
-    public class TankView : MonoBehaviour,IDamagable
+    public class TankView : MonoBehaviour
     {
         public TankType tankType;
         private TankController tankController;
-
         void Start()
         {
-           
         }
         public void TakeDamage(float damage){
         tankController.ApplyDamage(damage);
@@ -23,35 +21,34 @@ namespace Tanks.Tank
         }
         void Update()
         {
-            Move();
-            if (Input.GetKey(KeyCode.F))
+            if (Input.GetKeyDown(KeyCode.F))
             {
                 tankController.GetBullet();
             }
+            Move();
+            
         }
         public void Move()
         {
-            //if (Input.GetKeyDown(KeyCode.W))
+    
 
             if (Input.GetKey(KeyCode.W))
-
             {
                 transform.Translate(0, 0, 10 * Time.deltaTime);
+            
             }
             if (Input.GetKey(KeyCode.S))
 
             {
                 transform.Translate(0, 0, -10 * Time.deltaTime);
             }
-            if (Input.GetKey(KeyCode.D))
-
+            if(Input.GetKeyDown(KeyCode.D))
             {
-                transform.Translate(10 * Time.deltaTime, 0, 0);
+                 transform.Rotate(new Vector3(0,90,0));
             }
-            if (Input.GetKey(KeyCode.A))
-
+            if(Input.GetKeyDown(KeyCode.A))
             {
-                transform.Translate(-10 * Time.deltaTime, 0, 0);
+                transform.Rotate(new Vector3(0,-90,0));
             }
         }
          internal void Disable()
